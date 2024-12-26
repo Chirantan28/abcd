@@ -8,6 +8,7 @@ import 'package:flutter_application_2/canteens.dart';
 import 'package:flutter_application_2/xerox.dart';
 import 'package:flutter_application_2/delivery.dart';
 import 'package:flutter_application_2/stationary.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen>
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
     _controller.forward();
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 8), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => LoginPage()),
@@ -45,16 +46,39 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple,
-      body: Center(
-        child: ScaleTransition(
-          scale: _animation,
-          child: Text(
-            "StudVery",
-            style: TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF7A4D8C), Colors.purple.shade100],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+          ),
+        ),
+        child: Center(
+          child: ScaleTransition(
+            scale: _animation,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ClipOval(
+                  child: Image.asset(
+                    'assets/logo.jpg', // Replace with your image path
+                    width: 200, // Adjust the size as needed
+                    height: 200, // Adjust the size as needed
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "For the students, By the students",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white70,
+                    fontFamily: 'Cinzel', // Elegant font applied
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -62,5 +86,3 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 }
-
-//
